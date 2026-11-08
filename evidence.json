@@ -1,0 +1,50 @@
+{
+  "engine": "audit-engine/audit.py",
+  "findings_counts": {
+    "High": 1,
+    "Low": 8,
+    "Medium": 8,
+    "total": 17
+  },
+  "framework": "Multi-Protocol Governance Audit Framework",
+  "framework_version": "1.0.0",
+  "protocols": {
+    "Aave": {
+      "findings": [
+        "F-02",
+        "F-03",
+        "F-10",
+        "F-11"
+      ],
+      "score": 92.5,
+      "system": "Governance V3 (Core + Executors + PayloadsController)"
+    },
+    "Compound": {
+      "findings": [
+        "F-01",
+        "F-04",
+        "F-12",
+        "F-13",
+        "F-14"
+      ],
+      "score": 86.13,
+      "system": "Governor Bravo + Timelock"
+    },
+    "Uniswap": {
+      "findings": [
+        "F-05",
+        "F-06",
+        "F-07",
+        "F-08",
+        "F-09",
+        "F-15",
+        "F-16",
+        "F-17"
+      ],
+      "score": 75.88,
+      "system": "Governor Bravo + Timelock"
+    }
+  },
+  "reproduce_command": "bash scripts/clean_reproduce.sh",
+  "run_command": "bash scripts/run_all.sh"
+}
