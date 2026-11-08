@@ -1,0 +1,75 @@
+{
+  "areas": [
+    {
+      "id": "A1",
+      "name": "Proposal lifecycle & access",
+      "score": 75.0,
+      "weight": 15
+    },
+    {
+      "id": "A2",
+      "name": "Voting & quorum rules",
+      "score": 100.0,
+      "weight": 20
+    },
+    {
+      "id": "A3",
+      "name": "Timelock & execution",
+      "score": 100.0,
+      "weight": 20
+    },
+    {
+      "id": "A4",
+      "name": "Treasury execution",
+      "score": 100.0,
+      "weight": 15
+    },
+    {
+      "id": "A5",
+      "name": "Emergency powers & guardians",
+      "score": 100.0,
+      "weight": 15
+    },
+    {
+      "id": "A6",
+      "name": "Transparency & verifiability",
+      "score": 75.0,
+      "weight": 15
+    }
+  ],
+  "checks": {
+    "A1-1": "partial",
+    "A1-2": "pass",
+    "A1-3": "partial",
+    "A1-4": "pass",
+    "A2-1": "pass",
+    "A2-2": "pass",
+    "A2-3": "pass",
+    "A2-4": "pass",
+    "A2-5": "pass",
+    "A3-1": "pass",
+    "A3-2": "pass",
+    "A3-3": "pass",
+    "A3-4": "pass",
+    "A4-1": "pass",
+    "A4-2": "pass",
+    "A4-3": "pass",
+    "A5-1": "pass",
+    "A5-2": "pass",
+    "A5-3": "pass",
+    "A6-1": "partial",
+    "A6-2": "partial",
+    "A6-3": "pass",
+    "A6-4": "pass"
+  },
+  "findings": [
+    "F-02",
+    "F-03",
+    "F-10",
+    "F-11"
+  ],
+  "framework_version": "1.0.0",
+  "protocol": "Aave",
+  "score": 92.5,
+  "system": "Governance V3 (Core + Executors + PayloadsController)"
+}

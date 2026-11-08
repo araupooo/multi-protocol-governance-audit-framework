@@ -1,0 +1,305 @@
+{
+  "findings": [
+    {
+      "check": "A4-2",
+      "control": "No observed treasury transfer outside DAO recall",
+      "evidence": [
+        "C-COMP-289",
+        "C-COMP-289-RESCIND",
+        "C-COMP-DOCS",
+        "C-COMP-P8"
+      ],
+      "expected": "No executed proposal moved funds to an address the DAO cannot recall",
+      "id": "F-01",
+      "observed": "Proposal 289 moved 499,000 COMP to a group-controlled treasury the DAO could not recall.",
+      "outcome": "fail",
+      "protocol": "Compound",
+      "severity": "High",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A1-1",
+      "control": "Proposal threshold exists and is public",
+      "evidence": [
+        "C-AAVE-ARFC",
+        "C-AAVE-DOCS",
+        "C-AAVE-L2RFC"
+      ],
+      "expected": "Exact threshold stated in official docs and readable on-chain",
+      "id": "F-02",
+      "observed": "Snapshot author gate (80,000 AAVE) is public; the on-chain creation threshold is not stated in the current docs.",
+      "outcome": "partial",
+      "protocol": "Aave",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A6-1",
+      "control": "All lifecycle parameters published in official docs",
+      "evidence": [
+        "C-AAVE-ARFC",
+        "C-AAVE-DOCS",
+        "C-AAVE-L2RFC"
+      ],
+      "expected": "Every parameter (threshold, quorum, delay, period, timelock, grace) stated",
+      "id": "F-03",
+      "observed": "Level 2 quorum and vote-differential exact values are not stated in the current docs.",
+      "outcome": "partial",
+      "protocol": "Aave",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A2-4",
+      "control": "Vote-differential / anti-close-call rule",
+      "evidence": [
+        "C-COMP-289",
+        "C-COMP-289-RESCIND",
+        "C-COMP-DOCS",
+        "C-COMP-P8"
+      ],
+      "expected": "Winning option must exceed the runner-up by a stated margin",
+      "id": "F-04",
+      "observed": "No differential rule: Proposal 289 passed with 682,191 for vs 633,636 against (51.9%).",
+      "outcome": "partial",
+      "protocol": "Compound",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A2-4",
+      "control": "Vote-differential / anti-close-call rule",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "Winning option must exceed the runner-up by a stated margin",
+      "id": "F-05",
+      "observed": "No differential rule; majority plus 40M for-votes quorum only.",
+      "outcome": "partial",
+      "protocol": "Uniswap",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A2-5",
+      "control": "Voting period consistent across primary sources",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "All primary sources agree",
+      "id": "F-06",
+      "observed": "Jan 2023 process update states 6 days in its Phase 3 timeframe line and 7 days in its body text.",
+      "outcome": "fail",
+      "protocol": "Uniswap",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A5-2",
+      "control": "Emergency powers are limited",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "Documented limits: cannot seize funds, cannot unpause, cannot upgrade",
+      "id": "F-07",
+      "observed": "Guardian cancel power is documented; a pause power and its limits are not verified in the sources used.",
+      "outcome": "partial",
+      "protocol": "Uniswap",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A5-3",
+      "control": "Guardian composition is public",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "Multisig threshold and signers published",
+      "id": "F-08",
+      "observed": "Guardian holder not verifiable from any primary source used.",
+      "outcome": "fail",
+      "protocol": "Uniswap",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A6-4",
+      "control": "No unresolved parameter discrepancy across primary sources",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "All primary sources agree on all parameters",
+      "id": "F-09",
+      "observed": "Same 6-vs-7-day discrepancy as A2-5.",
+      "outcome": "fail",
+      "protocol": "Uniswap",
+      "severity": "Medium",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A1-3",
+      "control": "Permissionless / autonomous proposal path",
+      "evidence": [
+        "C-AAVE-ARFC",
+        "C-AAVE-DOCS",
+        "C-AAVE-L2RFC"
+      ],
+      "expected": "Any address can lock a small amount to create an autonomous proposal, or equivalent",
+      "id": "F-10",
+      "observed": "No built-in autonomous-proposal path; a one-off autonomous contract was built for the 2022 Level 2 update.",
+      "outcome": "partial",
+      "protocol": "Aave",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A6-2",
+      "control": "Governance contracts verified with published addresses",
+      "evidence": [
+        "C-AAVE-ARFC",
+        "C-AAVE-DOCS",
+        "C-AAVE-L2RFC"
+      ],
+      "expected": "Contract addresses published in official reference and verifiable",
+      "id": "F-11",
+      "observed": "Governance contract addresses are linked from the docs but were not verified from a primary source at audit time.",
+      "outcome": "partial",
+      "protocol": "Aave",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A4-3",
+      "control": "Standing bounds / whitelists on treasury operations",
+      "evidence": [
+        "C-COMP-289",
+        "C-COMP-289-RESCIND",
+        "C-COMP-DOCS",
+        "C-COMP-P8"
+      ],
+      "expected": "Explicit per-operation bounds or whitelists",
+      "id": "F-12",
+      "observed": "Each treasury transfer needs its own vote; no standing per-operation bounds or whitelists.",
+      "outcome": "partial",
+      "protocol": "Compound",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A5-3",
+      "control": "Guardian composition is public",
+      "evidence": [
+        "C-COMP-289",
+        "C-COMP-289-RESCIND",
+        "C-COMP-DOCS",
+        "C-COMP-P8"
+      ],
+      "expected": "Multisig threshold and signers published",
+      "id": "F-13",
+      "observed": "Pause Guardian is a named multisig, but its signer list was not verified from a primary source.",
+      "outcome": "partial",
+      "protocol": "Compound",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A6-2",
+      "control": "Governance contracts verified with published addresses",
+      "evidence": [
+        "C-COMP-289",
+        "C-COMP-289-RESCIND",
+        "C-COMP-DOCS",
+        "C-COMP-P8"
+      ],
+      "expected": "Contract addresses published in official reference and verifiable",
+      "id": "F-14",
+      "observed": "Governor Bravo mainnet address not verified from a primary source at audit time.",
+      "outcome": "partial",
+      "protocol": "Compound",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A1-3",
+      "control": "Permissionless / autonomous proposal path",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "Any address can lock a small amount to create an autonomous proposal, or equivalent",
+      "id": "F-15",
+      "observed": "No autonomous-proposal path; the 1M UNI threshold is the only gate.",
+      "outcome": "partial",
+      "protocol": "Uniswap",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A3-2",
+      "control": "Grace period defined",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "Expiry window stated in docs",
+      "id": "F-16",
+      "observed": "Grace period 14 days inferred from the shared Timelock codebase, not separately verified for Uniswap.",
+      "outcome": "partial",
+      "protocol": "Uniswap",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    },
+    {
+      "check": "A4-3",
+      "control": "Standing bounds / whitelists on treasury operations",
+      "evidence": [
+        "C-UNI-CONTRACT-READS",
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR",
+        "C-UNI-TECHREF",
+        "C-UNI-UNIF"
+      ],
+      "expected": "Explicit per-operation bounds or whitelists",
+      "id": "F-17",
+      "observed": "Each treasury transfer needs its own vote; no standing per-operation bounds or whitelists.",
+      "outcome": "partial",
+      "protocol": "Uniswap",
+      "severity": "Low",
+      "trigger": "bash scripts/run_all.sh"
+    }
+  ]
+}
