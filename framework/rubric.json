@@ -1,0 +1,352 @@
+{
+  "framework": "Multi-Protocol Governance Audit Framework",
+  "version": "1.0.0",
+  "scoring": {
+    "pass": 1.0,
+    "partial": 0.5,
+    "fail": 0.0
+  },
+  "areas": [
+    {
+      "id": "A1",
+      "name": "Proposal lifecycle & access",
+      "weight": 15,
+      "checks": [
+        {
+          "id": "A1-1",
+          "control": "Proposal threshold exists and is public",
+          "criteria": {
+            "pass": "Exact threshold stated in official docs and readable on-chain",
+            "partial": "Threshold stated only for the off-chain (Snapshot) stage, or on-chain threshold not stated",
+            "fail": "No threshold stated anywhere"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A1-2",
+          "control": "Proposer must maintain delegated power through voting",
+          "criteria": {
+            "pass": "Contract cancels the proposal if the proposer falls below threshold",
+            "partial": "Rule stated in docs but not confirmed on-chain",
+            "fail": "No maintenance rule"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A1-3",
+          "control": "Permissionless / autonomous proposal path",
+          "criteria": {
+            "pass": "Any address can lock a small amount to create an autonomous proposal, or equivalent",
+            "partial": "One-off autonomous contract used historically; no built-in path",
+            "fail": "No autonomous path and threshold is the only gate"
+          },
+          "severity": {
+            "fail": "Low",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A1-4",
+          "control": "Actions per proposal bounded",
+          "criteria": {
+            "pass": "Explicit max actions per proposal (e.g. 10)",
+            "partial": "Bound exists via executor/payload limits, not a stated max",
+            "fail": "Unbounded actions per proposal"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Voting & quorum rules",
+      "weight": 20,
+      "checks": [
+        {
+          "id": "A2-1",
+          "control": "Voting delay (review period) >= 1 day",
+          "criteria": {
+            "pass": "Delay >= 1 day, stated in docs",
+            "partial": "Delay stated but < 1 day",
+            "fail": "No delay"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A2-2",
+          "control": "Voting period >= 3 days",
+          "criteria": {
+            "pass": "Period >= 3 days, stated in docs",
+            "partial": "Period stated but < 3 days",
+            "fail": "No period stated"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A2-3",
+          "control": "Quorum defined as explicit for-votes threshold",
+          "criteria": {
+            "pass": "Exact for-votes quorum in docs",
+            "partial": "Quorum defined as % of supply only, no absolute number",
+            "fail": "No quorum definition"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A2-4",
+          "control": "Vote-differential / anti-close-call rule",
+          "criteria": {
+            "pass": "Winning option must exceed the runner-up by a stated margin",
+            "partial": "Majority + quorum only, no differential",
+            "fail": "No majority rule at all"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A2-5",
+          "control": "Voting period consistent across primary sources",
+          "criteria": {
+            "pass": "All primary sources agree",
+            "partial": "n/a",
+            "fail": "Two primary sources state different values"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Timelock & execution",
+      "weight": 20,
+      "checks": [
+        {
+          "id": "A3-1",
+          "control": "Timelock delay >= 1 day",
+          "criteria": {
+            "pass": "Delay >= 1 day, stated in docs",
+            "partial": "Delay stated but < 1 day",
+            "fail": "No timelock"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A3-2",
+          "control": "Grace period defined",
+          "criteria": {
+            "pass": "Expiry window stated in docs",
+            "partial": "Inferred from shared contract codebase, not separately verified",
+            "fail": "No grace period"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A3-3",
+          "control": "Timelock admin is the governor",
+          "criteria": {
+            "pass": "Admin is the Governor contract, stated in docs",
+            "partial": "Admin is a multisig with a documented path to governance",
+            "fail": "Admin is an EOA or unknown"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A3-4",
+          "control": "Execution is permissionless after delay",
+          "criteria": {
+            "pass": "Any address can execute after delay",
+            "partial": "Execution restricted to proposer or guardian",
+            "fail": "Execution restricted to an admin"
+          },
+          "severity": {
+            "fail": "Low",
+            "partial": "Low"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Treasury execution",
+      "weight": 15,
+      "checks": [
+        {
+          "id": "A4-1",
+          "control": "Treasury moves only via timelocked governance",
+          "criteria": {
+            "pass": "Treasury controlled only through the timelock",
+            "partial": "Treasury partly controlled by a steward with bounds",
+            "fail": "Treasury movable without a vote"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A4-2",
+          "control": "No observed treasury transfer outside DAO recall",
+          "criteria": {
+            "pass": "No executed proposal moved funds to an address the DAO cannot recall",
+            "partial": "n/a",
+            "fail": "An executed proposal moved funds to an address outside DAO recall"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A4-3",
+          "control": "Standing bounds / whitelists on treasury operations",
+          "criteria": {
+            "pass": "Explicit per-operation bounds or whitelists",
+            "partial": "Bounds exist only per-proposal (each transfer needs its own vote)",
+            "fail": "No bounds of any kind"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "Emergency powers & guardians",
+      "weight": 15,
+      "checks": [
+        {
+          "id": "A5-1",
+          "control": "Emergency pause / cancel power exists and is documented",
+          "criteria": {
+            "pass": "Pause and/or cancel power documented",
+            "partial": "Only one of pause/cancel documented",
+            "fail": "No emergency power documented"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A5-2",
+          "control": "Emergency powers are limited",
+          "criteria": {
+            "pass": "Documented limits: cannot seize funds, cannot unpause, cannot upgrade",
+            "partial": "Some limits documented; other powers (e.g. pause) not verified",
+            "fail": "Unlimited emergency power"
+          },
+          "severity": {
+            "fail": "High",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A5-3",
+          "control": "Guardian composition is public",
+          "criteria": {
+            "pass": "Multisig threshold and signers published",
+            "partial": "Guardian is a named multisig but signers not published",
+            "fail": "Guardian holder not verifiable from any primary source"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "name": "Transparency & verifiability",
+      "weight": 15,
+      "checks": [
+        {
+          "id": "A6-1",
+          "control": "All lifecycle parameters published in official docs",
+          "criteria": {
+            "pass": "Every parameter (threshold, quorum, delay, period, timelock, grace) stated",
+            "partial": "One or more core parameters not stated in current docs",
+            "fail": "Parameters not published"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Medium"
+          }
+        },
+        {
+          "id": "A6-2",
+          "control": "Governance contracts verified with published addresses",
+          "criteria": {
+            "pass": "Contract addresses published in official reference and verifiable",
+            "partial": "Addresses published but not verified at audit time, or vice versa",
+            "fail": "No addresses published"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A6-3",
+          "control": "Executed proposal record publicly accessible",
+          "criteria": {
+            "pass": "At least one executed proposal with ID, outcome, and link",
+            "partial": "Proposal record exists but outcome or link incomplete",
+            "fail": "No executed proposal on record"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        },
+        {
+          "id": "A6-4",
+          "control": "No unresolved parameter discrepancy across primary sources",
+          "criteria": {
+            "pass": "All primary sources agree on all parameters",
+            "partial": "n/a",
+            "fail": "A parameter differs between primary sources"
+          },
+          "severity": {
+            "fail": "Medium",
+            "partial": "Low"
+          }
+        }
+      ]
+    }
+  ]
+}
