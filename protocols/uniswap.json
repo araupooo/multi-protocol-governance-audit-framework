@@ -1,0 +1,282 @@
+{
+  "protocol": "Uniswap",
+  "system": "Governor Bravo + Timelock",
+  "chain": "Ethereum Mainnet",
+  "governance_token": "UNI",
+  "token_supply": 1000000000,
+  "parameters": {
+    "proposal_threshold_uni_current": {
+      "value": 1000000,
+      "unit": "UNI delegated",
+      "source": [
+        "C-UNI-PROC-2023"
+      ],
+      "verified": true,
+      "note": "Current process (Jan 2023 update): at least 1M UNI delegated to submit an on-chain proposal."
+    },
+    "proposal_threshold_uni_original": {
+      "value": 2500000,
+      "unit": "UNI delegated",
+      "source": [
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": true,
+      "note": "Original process: 2.5M UNI (0.25% of supply). Lowered to 1M UNI by the Dec 2022 governance vote summarised in the Jan 2023 update."
+    },
+    "temperature_check": {
+      "value": "5 days; at least 10M UNI for, and for > against",
+      "unit": "Snapshot poll",
+      "source": [
+        "C-UNI-PROC-2023"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "rfc_minimum_days": {
+      "value": 7,
+      "unit": "days",
+      "source": [
+        "C-UNI-PROC-2023"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "voting_delay_days": {
+      "value": 2,
+      "unit": "days",
+      "source": [
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "voting_period_days_summary": {
+      "value": 6,
+      "unit": "days",
+      "source": [
+        "C-UNI-PROC-2023"
+      ],
+      "verified": true,
+      "note": "Jan 2023 update Phase 3 timeframe line states '2 day waiting period, 6 day voting period, 2 day timelock'."
+    },
+    "voting_period_days_body": {
+      "value": 7,
+      "unit": "days",
+      "source": [
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": true,
+      "note": "Same Jan 2023 post, body text: 'a seven day voting period begins'. The older process docs and the process mirror also state 7 days. DISCREPANCY: 6 vs 7 days within one primary source."
+    },
+    "voting_period_blocks_secondary": {
+      "value": 40320,
+      "unit": "blocks",
+      "source": [
+        "C-UNI-CONTRACT-READS"
+      ],
+      "verified": false,
+      "note": "SECONDARY SOURCE (Oct 2026 contract reads): on-chain votingPeriod is 40,320 blocks, closer to 6 days than 7 at current block times. Corroborates the 6-day figure; not a primary source."
+    },
+    "quorum_for_votes_uni": {
+      "value": 40000000,
+      "unit": "UNI for-votes",
+      "source": [
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG"
+      ],
+      "verified": true,
+      "note": "4% of 1B supply; only for-votes count toward quorum."
+    },
+    "majority_rule": {
+      "value": "for > against",
+      "unit": "votes",
+      "source": [
+        "C-UNI-PROC-ORIG"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "timelock_delay_days": {
+      "value": 2,
+      "unit": "days",
+      "source": [
+        "C-UNI-PROC-2023",
+        "C-UNI-PROC-ORIG",
+        "C-UNI-TECHREF"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "timelock_delay_seconds": {
+      "value": 172800,
+      "unit": "seconds",
+      "source": [
+        "C-UNI-CONTRACT-READS"
+      ],
+      "verified": false,
+      "note": "SECONDARY SOURCE (Oct 2026 contract reads): timelock delay is 172,800 seconds (2 days), admin is Governor Bravo."
+    },
+    "grace_period_days": {
+      "value": 14,
+      "unit": "days",
+      "source": [
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": false,
+      "note": "NOT SEPARATELY VERIFIED for Uniswap: 14 days is the grace period of the shared Compound Timelock contract; Uniswap uses the same Timelock codebase."
+    },
+    "max_actions_per_proposal": {
+      "value": 10,
+      "unit": "actions",
+      "source": [
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "voting_power": {
+      "value": "UNI delegated, snapshot at proposal start",
+      "unit": "votes",
+      "source": [
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": true,
+      "note": "If the proposer does not maintain their vote weight throughout the voting period, the proposal may be canceled by anyone."
+    },
+    "timelock_address": {
+      "value": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC",
+      "unit": "address",
+      "source": [
+        "C-UNI-TECHREF"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "governor_bravo_address": {
+      "value": "0x408ED6354d4973f66138C91495F2f2FCbd8724C3",
+      "unit": "address",
+      "source": [
+        "C-UNI-TECHREF"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "timelock_admin": {
+      "value": "Governor Bravo",
+      "unit": "contract",
+      "source": [
+        "C-UNI-TECHREF",
+        "C-UNI-CONTRACT-READS"
+      ],
+      "verified": true,
+      "note": "Official technical reference lists the Timelock and Governor Bravo as the active mainnet contracts."
+    },
+    "execution": {
+      "value": "any address may execute after the timelock delay",
+      "unit": "call",
+      "source": [
+        "C-UNI-PROC-ORIG"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "vote_differential": {
+      "value": null,
+      "unit": "votes",
+      "source": [
+        "C-UNI-PROC-2023"
+      ],
+      "verified": false,
+      "note": "NOT PRESENT: no vote-differential rule; a proposal passes on a simple majority plus the 40M for-votes quorum."
+    },
+    "guardian": {
+      "value": "Governor Bravo guardian can cancel pending proposals",
+      "unit": "role",
+      "source": [
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": false,
+      "note": "NOT VERIFIED: the guardian holder / identity was not verified from a primary source at audit time."
+    }
+  },
+  "emergency_powers": {
+    "guardian_cancel": {
+      "value": "Governor Bravo guardian can cancel proposals",
+      "unit": "role",
+      "source": [
+        "C-UNI-PROCESS-MIRROR"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "guardian_holder_verified": {
+      "value": false,
+      "unit": "boolean",
+      "source": [
+        "C-UNI-TECHREF"
+      ],
+      "verified": false,
+      "note": "NOT VERIFIED: no primary source used in this audit names the guardian holder."
+    },
+    "pause_power_verified": {
+      "value": false,
+      "unit": "boolean",
+      "source": [
+        "C-UNI-PROC-2023"
+      ],
+      "verified": false,
+      "note": "NOT VERIFIED: no pause-guardian power is documented in the primary sources used; only the guardian cancel power is documented."
+    }
+  },
+  "executed_proposal": {
+    "id": "UNIfication",
+    "title": "UNIfication proposal",
+    "date": "2025-12-18 (on-chain), voting 2025-12-19 to 2025-12-25",
+    "outcome": "Passed",
+    "votes_for": 125342017,
+    "votes_against": 742,
+    "note": "Passed with 125,342,017 UNI for vs 742 against (above the 40M quorum). Activates the protocol fee switch and a one-time burn of 100M UNI from the treasury after the 2-day timelock, plus a 20M UNI/year growth budget.",
+    "sources": [
+      "C-UNI-UNIF"
+    ]
+  },
+  "checks": {
+    "A1-1": "pass",
+    "A1-2": "pass",
+    "A1-3": "partial",
+    "A1-4": "pass",
+    "A2-1": "pass",
+    "A2-2": "pass",
+    "A2-3": "pass",
+    "A2-4": "partial",
+    "A2-5": "fail",
+    "A3-1": "pass",
+    "A3-2": "partial",
+    "A3-3": "pass",
+    "A3-4": "pass",
+    "A4-1": "pass",
+    "A4-2": "pass",
+    "A4-3": "partial",
+    "A5-1": "pass",
+    "A5-2": "partial",
+    "A5-3": "fail",
+    "A6-1": "pass",
+    "A6-2": "pass",
+    "A6-3": "pass",
+    "A6-4": "fail"
+  },
+  "check_notes": {
+    "A1-3": "No autonomous-proposal path; the 1M UNI threshold is the only gate.",
+    "A2-4": "No differential rule; majority plus 40M for-votes quorum only.",
+    "A2-5": "Jan 2023 process update states 6 days in its Phase 3 timeframe line and 7 days in its body text.",
+    "A3-2": "Grace period 14 days inferred from the shared Timelock codebase, not separately verified for Uniswap.",
+    "A4-3": "Each treasury transfer needs its own vote; no standing per-operation bounds or whitelists.",
+    "A5-2": "Guardian cancel power is documented; a pause power and its limits are not verified in the sources used.",
+    "A5-3": "Guardian holder not verifiable from any primary source used.",
+    "A6-4": "Same 6-vs-7-day discrepancy as A2-5."
+  }
+}

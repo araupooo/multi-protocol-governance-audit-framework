@@ -1,0 +1,279 @@
+{
+  "protocol": "Aave",
+  "system": "Governance V3 (Core + Executors + PayloadsController)",
+  "chain": "Ethereum Mainnet (Core); Polygon / Avalanche (voting networks)",
+  "governance_token": "AAVE",
+  "token_supply": 16000000,
+  "parameters": {
+    "snapshot_author_gate": {
+      "value": "approved author list, or at least 80,000 AAVE proposition power",
+      "unit": "AAVE",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "snapshot_delay_days": {
+      "value": 1,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "snapshot_voting_days": {
+      "value": 3,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "snapshot_threshold_aave": {
+      "value": 320000,
+      "unit": "AAVE",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": "If the 320,000 AAVE threshold is met, the proposal proceeds to the AIP stage; if not, it fails. A quorum failure may reopen the Snapshot vote once."
+    },
+    "onchain_creation_threshold": {
+      "value": null,
+      "unit": "AAVE proposition power",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": false,
+      "note": "NOT STATED in the current official docs: the on-chain proposal-creation threshold is described only as 'sufficient proposal power'. The V2 planned configuration was 0.5% (Short Executor) / 2% (Long Executor) of supply (secondary source C-AAVE-V2-CONFIG)."
+    },
+    "level1_voting_delay_days": {
+      "value": 1,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": "Short Executor (Level 1): 1-day voting delay, 3-day voting period, 1-day timelock, 7-day grace period."
+    },
+    "level1_voting_period_days": {
+      "value": 3,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "level1_timelock_days": {
+      "value": 1,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "level1_grace_days": {
+      "value": 7,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "level1_quorum_aave": {
+      "value": 320000,
+      "unit": "AAVE/stkAAVE/aAAVE",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": "At least 320,000 must participate AND the winning option must receive at least 320,000 votes."
+    },
+    "level1_vote_differential_aave": {
+      "value": 80000,
+      "unit": "AAVE",
+      "source": [
+        "C-AAVE-ARFC"
+      ],
+      "verified": true,
+      "note": "ARFC framework: YAE votes must exceed the second-largest option (NAY or ABSTAIN) by at least 80,000."
+    },
+    "level2_voting_period_days": {
+      "value": 10,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": "Long Executor (Level 2): 10-day voting period, 7-day timelock, higher quorum and vote differential."
+    },
+    "level2_timelock_days": {
+      "value": 7,
+      "unit": "days",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "level2_quorum": {
+      "value": null,
+      "unit": "AAVE",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": false,
+      "note": "NOT STATED in the current official docs ('higher quorum and vote differential' only). V2 planned configuration: quorum 20%, vote differential 15%, proposition threshold 2% (secondary source C-AAVE-V2-CONFIG). The 2022 Level 2 update needed about 900,000 AAVE to pass (C-AAVE-L2RFC)."
+    },
+    "level2_proposition_power_aave": {
+      "value": 320000,
+      "unit": "AAVE proposition power",
+      "source": [
+        "C-AAVE-L2RFC"
+      ],
+      "verified": true,
+      "note": "2022 Level 2 update: 320,000 AAVE proposition delegation required to create the proposal, and it had to be maintained for the 17-day vote + queue period or anyone could cancel it."
+    },
+    "voting_power": {
+      "value": "AAVE + stkAAVE + aAAVE balances on Ethereum Mainnet, validated on the voting network with storage proofs",
+      "unit": "votes",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "voting_networks": {
+      "value": "Polygon PoS, Avalanche C-Chain, Ethereum Mainnet (backup)",
+      "unit": "networks",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "execution": {
+      "value": "any address may call executePayload() on the PayloadsController after the timelock expires",
+      "unit": "call",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "proposal_maintenance": {
+      "value": "proposition power must be maintained; below-threshold proposals can be cancelled by anyone",
+      "unit": "rule",
+      "source": [
+        "C-AAVE-L2RFC"
+      ],
+      "verified": true,
+      "note": ""
+    }
+  },
+  "emergency_powers": {
+    "protocol_emergency_guardian": {
+      "value": "4-of-7 multisig; holds EMERGENCY_ADMIN in Aave V3; can pause markets and act in a protocol emergency",
+      "unit": "multisig",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": "Signers published in the official docs."
+    },
+    "governance_emergency_guardian": {
+      "value": "5-of-9 multisig; can cancel malicious or erroneous governance proposals",
+      "unit": "multisig",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": "Signers published in the official docs; cancellations typically follow Certora verification review."
+    },
+    "freezing_steward": {
+      "value": "can freeze a reserve immediately; cannot unfreeze (requires governance)",
+      "unit": "steward",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "risk_steward": {
+      "value": "bounded parameter changes (e.g. LTV/LT/LB max 0.5% absolute, 72h delay); cannot set caps/LTV/LT/bonus to zero or act on restricted assets",
+      "unit": "steward",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "finance_stewards": {
+      "value": "Aave Finance Committee 2-of-3 multisig 0x22740deBa78d5a0c24C58C740e3715ec29de1bFa; treasury swaps only into DAO-whitelisted tokens, within per-token budgets; proceeds return to the Collector",
+      "unit": "multisig",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    },
+    "gho_stewards": {
+      "value": "GHO Steward v2, four contracts; 1-day timelock and maximum change per update; operated by the GHO Risk Council multisig",
+      "unit": "steward",
+      "source": [
+        "C-AAVE-DOCS"
+      ],
+      "verified": true,
+      "note": ""
+    }
+  },
+  "executed_proposal": {
+    "id": "Level 2 requirements update (2022)",
+    "title": "Adjust Level 2 requirements (long-executor)",
+    "date": "2022-09 / proposals created 2022-10-04",
+    "outcome": "Approved on Snapshot with 325,000 AAVE votes; implemented via on-chain proposals created through an Autonomous Proposal contract",
+    "votes_for": 325000,
+    "votes_against": null,
+    "note": "The update replaced the Level 2 Executor and the AAVE ecosystem reserve implementation. Creation used an Autonomous Proposal smart contract (0x6E1A6728829BC0FcA82C1A39834c6212C250F1c1) that accumulated 320,000 AAVE proposition power. About 900,000 AAVE were required to pass the Level 2 proposal.",
+    "sources": [
+      "C-AAVE-L2RFC"
+    ]
+  },
+  "checks": {
+    "A1-1": "partial",
+    "A1-2": "pass",
+    "A1-3": "partial",
+    "A1-4": "pass",
+    "A2-1": "pass",
+    "A2-2": "pass",
+    "A2-3": "pass",
+    "A2-4": "pass",
+    "A2-5": "pass",
+    "A3-1": "pass",
+    "A3-2": "pass",
+    "A3-3": "pass",
+    "A3-4": "pass",
+    "A4-1": "pass",
+    "A4-2": "pass",
+    "A4-3": "pass",
+    "A5-1": "pass",
+    "A5-2": "pass",
+    "A5-3": "pass",
+    "A6-1": "partial",
+    "A6-2": "partial",
+    "A6-3": "pass",
+    "A6-4": "pass"
+  },
+  "check_notes": {
+    "A1-1": "Snapshot author gate (80,000 AAVE) is public; the on-chain creation threshold is not stated in the current docs.",
+    "A1-3": "No built-in autonomous-proposal path; a one-off autonomous contract was built for the 2022 Level 2 update.",
+    "A6-1": "Level 2 quorum and vote-differential exact values are not stated in the current docs.",
+    "A6-2": "Governance contract addresses are linked from the docs but were not verified from a primary source at audit time."
+  }
+}
