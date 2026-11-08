@@ -1,0 +1,6 @@
+audit.py: loaded rubric v1.0.0 (6 areas, 23 checks)
+audit.py: profile aave: 23 checks, score 92.50, findings 4 (0 High, 2 Medium, 2 Low)
+audit.py: profile compound: 23 checks, score 86.13, findings 5 (1 High, 1 Medium, 3 Low)
+audit.py: profile uniswap: 23 checks, score 75.88, findings 8 (0 High, 5 Medium, 3 Low)
+audit.py: total findings 17 (1 High, 8 Medium, 8 Low)
+audit.py: wrote 8 files

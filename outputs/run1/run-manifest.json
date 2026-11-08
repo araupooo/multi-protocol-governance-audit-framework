@@ -1,0 +1,11 @@
+{
+  "files": {
+    "aave.report.md": "736bc979c10a3c3796b527516ace8cfeb495006e1e29ddcdefe4521c2e1aa6c3",
+    "aave.score.json": "da33c4da869d5f34dd8e338b31718acef34418b87a83552f0ec48d459c1e8f2b",
+    "compound.report.md": "3a34e013e9b50a9784e2ae247e87355cc8cc0f7e411851f8ab408719809e6fd5",
+    "compound.score.json": "e40f04a9fde54a3096a904f61deec5b44277250a4c0c43246c355ca9e1fe144a",
+    "findings.json": "e6fb0c04330ec9d1c2f180b2598c2a33b6eee8953a30abd98c04f4e1def984ae",
+    "uniswap.report.md": "e477c53d689c32c21263ca3d73348061a8213b900e0fa2f35971fd35864f2090",
+    "uniswap.score.json": "3e7610b0f03e3c0e7cd94b06aafb541f624e0ed0bd232f8e852cef07d7b6fef0"
+  }
+}
